@@ -43,7 +43,6 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'spring-commands-rspec'
   gem 'bullet'
-  gem 'rubocop', require: false
   gem 'guard-livereload', require: false
   gem 'erd'
 end
@@ -61,3 +60,5 @@ gem 'haml-rails'
 gem 'webpacker', '~> 4.x'
 gem 'devise'
 gem 'bootsnap', require: false
+gem 'opal-rails'
+gem 'ovto'
