@@ -4,6 +4,7 @@ class Foo < Ovto::App
   class State < Ovto::State
     item :color_index, default: 0
     item :colors, default: %w(red blue green pink yellow gray)
+    item :additional_color, default: ''
   end
 
   class Actions < Ovto::Actions
@@ -17,6 +18,18 @@ class Foo < Ovto::App
 
     def update_designated_color(color_name:)
       { color_index: state.colors.index(color_name) }
+    end
+
+    def dump_additional_color(value:)
+      { additional_color: value }
+    end
+
+    def add_color
+      { colors: set_colors, additional_color: '' }
+    end
+
+    def set_colors
+      state.additional_color.empty? ? state.colors : state.colors.push(state.additional_color)
     end
   end
 
@@ -44,6 +57,19 @@ class Foo < Ovto::App
             o 'option', { value: color }, color
           end
         end
+        o 'label', { for: 'add_color' }, 'addition: '
+        o 'input', {
+          id: 'add_color',
+          type: 'text',
+          value: state.additional_color,
+          onchange: -> (e) { actions.dump_additional_color(value: e.target.value) }
+        }
+        o 'input', {
+          type: 'button',
+          value: 'add',
+          style: { background: 'purple' },
+          onclick: -> { actions.add_color }
+        }
       end
     end
   end
