@@ -18,12 +18,19 @@ class Foo < Ovto::App
 
   class MainComponent < Ovto::Component
     def render
-      o 'input', {
-        type: 'button',
-        value: 'Hello',
-        style: { background: state.colors[state.color_index] },
-        onclick: -> { actions.update_color }
-      }
+      o '.ColorChanger' do
+        o 'input', {
+          type: 'button',
+          value: 'Hello',
+          style: { background: state.colors[state.color_index] },
+          onclick: -> { actions.update_color }
+        }
+        o 'input', {
+          type: 'text',
+          value: state.colors[state.color_index],
+          disabled: 'disabled'
+        }
+      end
     end
   end
 end
