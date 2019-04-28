@@ -7,7 +7,7 @@ class Foo < Ovto::App
   end
 
   class Actions < Ovto::Actions
-    def update_color
+    def update_rondom_color
       { color_index: new_index }
     end
 
@@ -23,7 +23,7 @@ class Foo < Ovto::App
           type: 'button',
           value: 'Hello',
           style: { background: state.colors[state.color_index] },
-          onclick: -> { actions.update_color }
+          onclick: -> { actions.update_rondom_color }
         }
         o 'input', {
           type: 'text',
