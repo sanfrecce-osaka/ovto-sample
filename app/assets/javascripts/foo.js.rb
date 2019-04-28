@@ -14,6 +14,10 @@ class Foo < Ovto::App
     def new_index
       (0..(state.colors.length - 1)).to_a.sample
     end
+
+    def update_designated_color(color_name:)
+      { color_index: state.colors.index(color_name) }
+    end
   end
 
   class MainComponent < Ovto::Component
@@ -30,6 +34,16 @@ class Foo < Ovto::App
           value: state.colors[state.color_index],
           disabled: 'disabled'
         }
+        o 'label', { for: 'changing_color' }, 'designation: '
+        o 'select', {
+          id: 'changing_color',
+          value: state.colors[state.color_index],
+          onchange: -> (e) { actions.update_designated_color(color_name: e.target.value) }
+        } do
+          state.colors.each do |color|
+            o 'option', { value: color }, color
+          end
+        end
       end
     end
   end
