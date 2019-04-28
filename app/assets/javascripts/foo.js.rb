@@ -1,15 +1,14 @@
 require 'ovto'
 
 class Foo < Ovto::App
-  COLORS = %w(red blue green pink yellow gray)
-
   class State < Ovto::State
     item :color_index, default: 0
+    item :colors, default: %w(red blue green pink yellow gray)
   end
 
   class Actions < Ovto::Actions
     def update_color
-      new_index = (0..(COLORS.length - 1)).to_a.sample
+      new_index = (0..(state.colors.length - 1)).to_a.sample
       { color_index: new_index }
     end
   end
@@ -19,7 +18,7 @@ class Foo < Ovto::App
       o 'input', {
         type: 'button',
         value: 'Hello',
-        style: { background: COLORS[state.color_index] },
+        style: { background: state.colors[state.color_index] },
         onclick: -> { actions.update_color }
       }
     end
