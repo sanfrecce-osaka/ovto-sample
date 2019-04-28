@@ -8,8 +8,11 @@ class Foo < Ovto::App
 
   class Actions < Ovto::Actions
     def update_color
-      new_index = (0..(state.colors.length - 1)).to_a.sample
       { color_index: new_index }
+    end
+
+    def new_index
+      (0..(state.colors.length - 1)).to_a.sample
     end
   end
 
