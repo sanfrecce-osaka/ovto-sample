@@ -7,19 +7,7 @@ class Foo < Ovto::App
         o ChangingColorButton
         o CurrentColor
         o ColorDesignator
-        o 'label', { for: 'add_color' }, 'addition: '
-        o 'input', {
-          id: 'add_color',
-          type: 'text',
-          value: state.color.additional_color,
-          onchange: -> (e) { actions.dump_additional_color(value: e.target.value) }
-        }
-        o 'input', {
-          type: 'button',
-          value: 'add',
-          style: { background: 'purple' },
-          onclick: -> { actions.add_color }
-        }
+        o AdditionalColor
       end
     end
   end
