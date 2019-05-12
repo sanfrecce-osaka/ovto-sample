@@ -4,12 +4,7 @@ class Foo < Ovto::App
   class MainComponent < Ovto::Component
     def render
       o '.ColorChanger' do
-        o 'input', {
-          type: 'button',
-          value: 'Hello',
-          style: { background: state.color.colors[state.color.color_index] },
-          onclick: -> { actions.update_rondom_color }
-        }
+        o ChangingColorButton
         o 'input', {
           type: 'text',
           value: state.color.colors[state.color.color_index],
