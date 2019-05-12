@@ -5,11 +5,7 @@ class Foo < Ovto::App
     def render
       o '.ColorChanger' do
         o ChangingColorButton
-        o 'input', {
-          type: 'text',
-          value: state.color.colors[state.color.color_index],
-          disabled: 'disabled'
-        }
+        o CurrentColor
         o 'label', { for: 'changing_color' }, 'designation: '
         o 'select', {
           id: 'changing_color',
