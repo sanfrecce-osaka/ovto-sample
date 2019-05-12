@@ -7,21 +7,21 @@ class Foo < Ovto::App
         o 'input', {
           type: 'button',
           value: 'Hello',
-          style: { background: state.colors[state.color_index] },
+          style: { background: state.color.colors[state.color.color_index] },
           onclick: -> { actions.update_rondom_color }
         }
         o 'input', {
           type: 'text',
-          value: state.colors[state.color_index],
+          value: state.color.colors[state.color.color_index],
           disabled: 'disabled'
         }
         o 'label', { for: 'changing_color' }, 'designation: '
         o 'select', {
           id: 'changing_color',
-          value: state.colors[state.color_index],
+          value: state.color.colors[state.color.color_index],
           onchange: -> (e) { actions.update_designated_color(color_name: e.target.value) }
         } do
-          state.colors.each do |color|
+          state.color.colors.each do |color|
             o 'option', { value: color }, color
           end
         end
@@ -29,7 +29,7 @@ class Foo < Ovto::App
         o 'input', {
           id: 'add_color',
           type: 'text',
-          value: state.additional_color,
+          value: state.color.additional_color,
           onchange: -> (e) { actions.dump_additional_color(value: e.target.value) }
         }
         o 'input', {
